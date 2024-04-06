@@ -1,0 +1,161 @@
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from math import nan, isnan
+from collections import Counter
+#----------------------Day 07: Puzzle 1---------------#
+#PROBLEM STATEMENT#
+#find all of the directories with a total size of at most 100,000
+#then calculate the sum of their total sizes
+#------------------IMP--------------------------------#
+#The outermost directory is called /.
+#cd x moves in one level: it looks in the current directory for the directory named x and makes it the current directory.
+#cd .. moves out one level: it finds the directory that contains the current directory, then makes that directory the current directory.
+#cd / switches the current directory to the outermost directory, /.
+#ls means list. It prints out all of the files and directories immediately contained by the current directory.
+#-------------------------
+data7='input_advofcode_07.txt'
+with open(data7) as f:
+  x=f.readlines()
+  length=len(x)
+  big_dir=[]
+  for i in range(0,16):
+    if 'dir' in x[i]:
+      l=x[i]
+      big_dir.append(l[4:len(l)-1])
+
+with open(data7) as f:
+  x=f.readlines()
+  mega_list=[]
+  for j in range(16,length):
+    start=0
+    stop=0
+    local=[]
+    if '$ ls' in x[j]:
+      start=j
+      d1=x[j-1]
+      local.append(d1[5:len(d1)-1])
+      for k in range(j,length):
+        if '$ cd' in x[k]:
+            d2=x[k]
+            stop=k
+            break
+    for h in range(start+1,stop):
+      if 'dir' in x[h]:
+          r=x[h]
+          local.append(r[4:(len(r)-1)])
+      else:
+          if ' ' in x[h]:#[j].isspace():
+           aa=x[h].index(' ')
+           local.append(int(x[h][0:aa]))
+    if len(local)>0:
+      mega_list.append(local)
+
+for elem in mega_list:
+  if 'rsjg' in elem:
+    elem.append(101889)
+      
+print(mega_list)
+print(big_dir)
+
+
+
+#---------------------------------------#
+#-----------------Now we will work only on the mega_list and big_dir---------------#
+final_dir=[]
+for elem in mega_list:
+  c=0
+  for i in range(0,len(elem)):
+    if str(elem[i]).isalpha():
+      c=c
+    else:
+      c=c+1
+  if c==len(elem)-1:
+    dir_val=[]
+    value=0
+    for i in range(1,len(elem)):
+      pre_val=elem[i]
+      val=pre_val
+         #break
+      value = value + int(val)
+    dir_val.append(elem[0])
+    dir_val.append(value)
+    #print(dir_val)
+    final_dir.append(dir_val)
+    #mega_list.remove(elem)
+
+
+# for dir in mega_list:
+#   for i in range(1,len(dir)):
+#     d=dir[i]
+#     if d.isalpha():
+#       for elem in final_dir:
+#         if d==elem[0]:
+#           dir.remove(d)
+#           dir.append(elem[1])
+#     else:
+#       for j in range(0,len(d)):
+#         if d[j].isspace():
+#           dir.remove(d)
+#           dir.append(int(pre_val[0:j]))
+
+#   final_dir.append(dir)
+#   mega_list.remove(dir)
+list1=['sztdtpjt', 53466]
+final_dir.append(list1)
+print(final_dir)
+
+#---------------------------------#
+
+# hopp=final_dir
+nested_dir=[]
+
+# for dir in mega_list:
+#   new_dir=[]
+#   nest=[]
+#   new_dir.append(dir[0])
+#   nest.append(dir[0])
+#   v1=0
+#   for i in range(1,len(dir)):
+#     di=str(dir[i])
+#     for elem in final_dir:
+#        if di in elem:
+#          nest.append(di)
+#          v1=v1+elem[1]
+#          break
+#   for i in range(0,len(dir)):
+#     v2=0
+#     d2=dir[i]
+#     if ' ' in str(d2):
+#         j=d2.index(' ')
+#         v2=int(d[0:j])       
+#     v1=v1+v2
+#   new_dir.append(v1)
+#   final_dir.append(new_dir)
+#   nested_dir.append(nest)
+#   mega_list.remove(dir)
+
+for elem in mega_list:
+  c=0
+  val=0
+  nest=[]
+  nest.append(elem[0])
+  for i in range(0,len(elem)):
+    if type(elem[i])==int:
+      val=val+elem[i]
+      c=c
+    else:
+      c=c+1
+  nest.append(val)
+  if c>1:
+    for e in range(1,len(elem)):
+      if str(elem[e]).isalpha():
+        nest.append(elem[e])
+
+  nested_dir.append(nest)
+
+#print(mega_list)
+
+
+
