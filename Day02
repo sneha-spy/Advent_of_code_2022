@@ -1,0 +1,90 @@
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from math import nan, isnan
+#----------------------Day 02: Puzzle 1---------------#
+#A;B;C and X;Y;Z are Rock, Paper and Scissor
+#(1 for Rock, 2 for Paper, and 3 for Scissors) plus (0 if you lost, 3 if the round was a draw, and 6 if you won)
+data='input_advofcode_02.txt'
+total_sum=0
+score=0
+with open(data) as f:
+        for line in f:
+          score=0
+          #print(line)      
+          if 'X' in line:
+            score=score+1
+            if 'A' in line:
+              score=score+3
+            if 'B' in line:
+              score=score+0
+            if 'C' in line:
+              score=score+6
+            #print(line[0])
+          if 'Y' in line:
+            score=score+2
+            if 'A' in line:
+              score=score+6
+            if 'B' in line:
+              score=score+3
+            if 'C' in line:
+              score=score+0
+          if 'Z' in line:
+            score=score+3
+            if 'A' in line:
+              score=score+0
+            if 'B' in line:
+              score=score+6
+            if 'C' in line:
+              score=score+3
+          total_sum = total_sum + score
+
+print(total_sum)
+
+#------------------------------------------------------------------------#
+
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from math import nan, isnan
+#----------------------Day 02: Puzzle 2---------------#
+# X means lose, Y means a draw, and Z means win.
+# A :rock, B: paper, C: Scissor
+#(1 for Rock, 2 for Paper, and 3 for Scissors)
+data='input_advofcode_02.txt'
+total_sum=0
+score=0
+with open(data) as f:
+        for line in f:
+          score=0
+          #print(line)      
+          if 'X' in line:
+            score=score+0
+            if 'A' in line:
+              score=score+3
+            if 'B' in line:
+              score=score+1
+            if 'C' in line:
+              score=score+2
+            #print(line[0])
+          if 'Y' in line:
+            score=score+3
+            if 'A' in line:
+              score=score+1
+            if 'B' in line:
+              score=score+2
+            if 'C' in line:
+              score=score+3
+          if 'Z' in line:
+            score=score+6
+            if 'A' in line:
+              score=score+2
+            if 'B' in line:
+              score=score+3
+            if 'C' in line:
+              score=score+1
+          total_sum = total_sum + score
+
+print(total_sum)
