@@ -1,0 +1,34 @@
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from math import nan, isnan
+from collections import Counter
+#----------------------Day 06: Puzzle 1---------------#
+data1='input_advofcode_06.txt'
+seq=[]
+LEN=0
+with open(data1) as f:
+  for line in f:
+    #print(line)
+    LEN=len(line)
+    for i in range(0,len(line)-1):
+        seq.append(line[i])
+
+#print(seq)
+for n in range(0,LEN-4):
+  marker=0
+  symbol=[]
+  start=seq[n]
+  symbol.append(seq[n])
+  symbol.append(seq[n+1])
+  symbol.append(seq[n+2])
+  symbol.append(seq[n+3])
+  print(len(symbol),len(set(symbol)))
+  if len(set(symbol))==4:
+    marker=n+4
+    break
+  print(marker)
+
+#---------------------------------------------------------------------#
+
