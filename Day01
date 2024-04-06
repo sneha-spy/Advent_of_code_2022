@@ -25,3 +25,22 @@ print(sum_calories)
 sum_calories[0]=51396 #JUGAAD
 max_value=max(sum_calories)
 print(max_value)
+
+#-------------------------------------------------------------------------------------------------------------#
+
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from math import nan, isnan
+#----------------------Day 01: Puzzle 2---------------#
+Total_max=0
+for n in range(0,3): 
+   max_value=max(sum_calories)
+   i=sum_calories.index(max_value)
+   print(max_value)
+   print(i)
+   Total_max = Total_max + max_value
+   sum_calories.pop(i)
+
+print(Total_max)
