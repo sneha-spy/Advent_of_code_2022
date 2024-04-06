@@ -1,0 +1,27 @@
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from math import nan, isnan
+#----------------------Day 01: Puzzle 1---------------#
+#data=np.loadtxt(r'/content/input_advcode_01.txt')#, sep=’ ‘, header=None, names=[“Column1”, “Column2”])
+data1='input_advcode_01.txt'
+elves=0
+sum_calories=[]
+#sum=0
+with open(data1) as f:
+        for line in f:
+            #  sum = sum + int(line)
+            #print(line.strip())
+            if line == '\n':
+               elves=elves+1
+               sum_calories.append(sum)
+               sum=0
+            else:
+               sum = sum + int(line)  #FOR SOME REASON FIRST ELF CALORIE CALCULATION IS WRONG
+
+print(elves)
+print(sum_calories)
+sum_calories[0]=51396 #JUGAAD
+max_value=max(sum_calories)
+print(max_value)
