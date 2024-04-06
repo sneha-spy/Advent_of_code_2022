@@ -1,0 +1,52 @@
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from math import nan, isnan
+#----------------------Day 05: Puzzle 1---------------#
+data2='input_advofcode_05.txt'
+stack=[]
+stack.append(['B','G','S','C'])
+stack.append(['T','M','W','H','J','N','V','G'])
+stack.append(['M','Q','S'])
+stack.append(['B','S','L','T','W','N','M'])
+stack.append(['J','Z','F','T','V','G','W','P'])
+stack.append(['C','T','B','G','Q','H','S'])
+stack.append(['T','J','P','B','W'])
+stack.append(['G','D','C','Z','F','T','Q','M'])
+stack.append(['N','S','H','B','P','F'])
+with open(data2) as f:
+  moves=[]
+  for line in f:        
+     if len(line)>1 and len(line)<36:
+       #for i in range(0,len(line)):
+        if len(line)==19:
+          moves.append(int(line[5]))
+          moves.append(int(line[12]))
+          moves.append(int(line[17]))
+        if len(line)==20:
+          moves.append(int(line[5:7]))
+          moves.append(int(line[13]))
+          moves.append(int(line[18]))
+    
+for i in range(0,len(moves),3):
+    N=moves[i]
+    take=moves[i+1]
+    put=moves[i+2]
+    my_list=stack[take-1]
+    put_list=stack[put-1]
+    my_objects=[]
+    for j in range(1,N+1):
+      a=my_list.pop(-N-1+j)
+      my_objects.append(a)
+      
+    for k in my_objects:
+      put_list.append(k)
+
+    stack[take-1]=my_list
+    stack[put-1]=put_list
+
+print(stack)
+#------------------------------------------------------------------------------------#
+
+
