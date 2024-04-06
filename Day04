@@ -1,0 +1,90 @@
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from math import nan, isnan
+#----------------------Day 04: Puzzle 1---------------#
+data2='input_advofcode_04.txt'
+with open(data2) as f:
+  assoc=0
+  for line in f:
+    for i in range(0,len(line)):
+      if line[i] == ',':
+        a=line[0:i]
+        b=line[i+1:len(line)+1]
+        
+    for j in range(0,len(a)):
+          if a[j]=='-':
+            c=int(a[0:j])
+            d=int(a[j+1:len(a)+1])
+    for k in range(0,len(b)):
+          if b[k]=='-':
+            e=int(b[0:k])
+            f=int(b[k+1:len(b)+1])
+    
+    elf1=list(range(c,d+1))
+    elf2=list(range(e,f+1))
+    #print(elf1,elf2)
+
+    if set(elf1) == set(elf2):
+      assoc=assoc+1
+      continue
+    if set(elf1) <= set(elf2):
+      assoc=assoc+1
+      continue
+    if set(elf2) <= set(elf1):
+      assoc=assoc+1
+      continue
+    
+
+
+    #if(set(elf2).issubset(set(elf1))):
+      #assoc = assoc + 1
+        
+    
+print(assoc)
+
+
+
+$---------------------------------------------------------------------------------#
+
+import networkx as nx
+import numpy as np
+import matplotlib.pyplot as plt
+import pandas as pd
+from math import nan, isnan
+#----------------------Day 04: Puzzle 2---------------#
+data2='input_advofcode_04.txt'
+with open(data2) as f:
+  assoc=0
+  for line in f:
+    for i in range(0,len(line)):
+      if line[i] == ',':
+        a=line[0:i]
+        b=line[i+1:len(line)+1]
+        
+    for j in range(0,len(a)):
+          if a[j]=='-':
+            c=int(a[0:j])
+            d=int(a[j+1:len(a)+1])
+    for k in range(0,len(b)):
+          if b[k]=='-':
+            e=int(b[0:k])
+            f=int(b[k+1:len(b)+1])
+    
+    elf1=list(range(c,d+1))
+    elf2=list(range(e,f+1))
+    count=0
+    for elem in elf1:
+      if elem in elf2:
+        count=count+1
+      continue
+    for elem in elf2:
+      if elem in elf1:
+        count=count+1
+      continue
+
+    if count>=1:
+      assoc=assoc+1
+
+print(assoc)
